@@ -2,7 +2,7 @@
 function parseCSV(csvData) {
     const lines = csvData.split('\n');
     return lines.map(line => {
-        const [requestTimestamp, appointmentTimestamp, vehicleType] = line.split('\t');
+        const [requestTimestamp, appointmentTimestamp, vehicleType] = line.split(',');
         return { requestTimestamp, appointmentTimestamp, vehicleType };
     });
 }
