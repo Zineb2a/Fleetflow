@@ -1,8 +1,8 @@
-/* Custom styles go here */
 
 /* Change background color of calendar header */
 .fc-toolbar {
-    background-color: #3498db;
+    padding-top: 20px;
+    background-color: #4e73df;
     color: #ffffff;
 }
 
@@ -18,4 +18,3 @@
     border: 1px solid #ddd;
 }
 
-/* Add more custom styles based on your preferences */
