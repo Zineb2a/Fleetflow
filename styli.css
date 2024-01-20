@@ -1,0 +1,12 @@
+th, td {
+    border: 1px solid black;
+    padding: 5px;
+    width:auto;
+}
+#table{
+ position: fixed;
+ left: 30%;
+}
+
+
+
