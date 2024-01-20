@@ -9,7 +9,9 @@ body {
     min-height: 100vh;
     background: #ecf0f1;
 }
-
+p{
+    text-align: center;
+}
 h1 {
     text-align: center;
     color: #333;
@@ -39,17 +41,28 @@ section {
 }
 
 /* Spot styles */
-.vehicle-section i {
-    font-size: 5em; /* Larger icons */
-    margin: 10px 0;
-    color: #2ecc71;
-    
+/* Existing sidebar and main styles */
+
+/* Vehicle section adjustments for centering */
+.vehicle-section {
+    font-family: Arial, sans-serif;
+    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: #f9f9f9;
+    display: flex; /* Using flexbox for alignment */
+    flex-direction: column; /* Align children vertically */
+    align-items: center; /* Center children horizontally */
+    justify-content: center; /* Center children vertically */
+    height: 150px; /* Fixed height for each section */
 }
 
-.vehicle-section p {
-    margin: 10px 0;
-    font-size: 1em;
+.vehicle-section i {
+    font-size: 5em; /* Larger icons */
+    margin-bottom: 10px; /* Space between icon and text */
+    color: #2ecc71; /* Default color, can be overridden by specific classes */
+    text-align: center; /* Center the icon */
 }
+
 
 /* Compact, Medium, Full-size car spots */
 .vehicle-section.compact-spot i {
