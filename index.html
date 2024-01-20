@@ -1,64 +1,72 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>signup</title>
-    <link rel="stylesheet" href="style2.css" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="homestyle.css">
+    
+    
 </head>
-
-
-
-<body background="6553651.webp">
-
-    <div class="container">
-        <div class="form sign-in-container">
-            <form id="form" onsubmit="yourJsFunction();return false">
-                <h1>Sign up</h1>
-
-                <input name="name" id="name" placeholder="User Name">
-
-                <input name="mail" id="mail" placeholder="User Email">
-                <input name="number" id="number" placeholder="Phone Number">
-
-                <input name="password" type="password" id="password" placeholder="Password">
-                <input name="password2" type="password" id="password2" placeholder="Confirm Password">
-
-                <input name="sub" type="submit" id="hi" value="Sign Up">
-
-            </form>
-        </div>
-        <div class="overlay-container">
-            <div class="overlay">
-                <div class="overlay-panel overlay-right">
-                    <h1>Login</h1>
-                    <p>Already have an Account? Login here</p>
-                    <button id="logInPage" class="signup_btn">Login </button>
+<body>
+ <div>
+     
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link " href="#">Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Service Spots</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="#">Schedule</a></li>
+                    </ul>
                 </div>
             </div>
+
+            <!-- Main Content -->
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <div class="container mt-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="file" id="csvFileInput" accept=".csv" onchange="loadCSV(event)" class="btn btn-primary mb-2">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input type="date" id="startDate" class="form-control mb-2">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="date" id="endDate" class="form-control mb-2">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" id="carType" class="form-control mb-2" placeholder="Car Type">
+                        </div>
+                        <div class="col-md-3">
+                            <button onclick="applyFilter()" class="btn btn-success">Filter</button>
+                            <button onclick="resetFilter()" class="btn btn-secondary">Reset</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="tableContainer"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Your existing content here -->
+            </main>
         </div>
     </div>
+    
+    
+    
+ <!-- Optional: Include Bootstrap's JavaScript -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
-    <script src="signup.js"></script>
-    <script>
-
-        $("#logInPage").click(function () {
-            location.href = "login.html"
-        })
-
-        
-       
-</script>
-
-
+ <script src="schedule.js"></script>
 </body>
-
 </html>

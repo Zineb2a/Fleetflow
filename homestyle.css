@@ -1,0 +1,44 @@
+.sidebar {
+    background-color: #0d6efd; /* Bootstrap primary blue */
+    color: white;
+}
+
+.sidebar .nav-link {
+    color: rgba(0, 0, 0, 0.75);
+    margin: 10px 15px;
+    border-radius: 5px;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #1a73e8; /* Lighter blue */
+    color: white;
+}
+
+.sidebar .nav-link.active {
+    background-color: #1346a4; /* Darker blue */
+    color: white;
+}
+
+main {
+    background-color: #f4f7fa; /* Very light blue */
+    padding: 20px;
+}
+
+h1 {
+    color: #0d6efd;
+}
+html, body {
+    height: 100%; /* Make html and body take full height of the viewport */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+.container-fluid {
+    min-height: 100%; /* Ensure container takes at least the full height */
+}
+
+/* Additional styles to ensure sidebar takes full height */
+.sidebar {
+    min-height: 100vh; /* 100% of the viewport height */
+    overflow-y: auto; /* Add scrollbar if content is taller than viewport */
+}
