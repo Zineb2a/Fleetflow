@@ -32,7 +32,39 @@ let openforall4array=[];
 let openforall5array=[] 
 
 
-let todayDate = new Date("2022-10-20 9:01"); // Example: 22 November 2022, 5PM
+let todayDate = new Date("2022-10-17 7:12"); // Example: 22 November 2022, 5PM
+
+function loadCSV() {
+    let todayDate = new Date("2022-10-20T09:01:00");
+
+    $.ajax({
+        type: 'GET',
+        url: "http://localhost:8080/api/v1/user/csv",
+        success: function (data) {
+            // Assuming the data is an array of objects and each object has a property 'registrationTime'
+            // Sort the data based on 'registrationTime'
+            csvData = data.sort((a, b) => new Date(a["2022-11-27 07:16"]) - new Date(b["2022-11-27 07:16"]));
+
+            for (let i in csvData) {
+                let registrationTime = new Date(csvData[i]["2022-11-27 07:16"]);
+                let vehicleType = csvData[i].vehicleType; // Replace with the actual key for vehicle type
+                let timeLimit = getTimeLimitForType(vehicleType);
+
+                if (registrationTime.toDateString() === todayDate.toDateString()) {
+                    let timeDifference = todayDate - registrationTime;
+
+                    if (timeDifference >= 0 && timeDifference <= timeLimit) {
+                        console.log(csvData[i]["2022-11-27 07:16"]);
+                        updateIconBasedOnType(vehicleType);
+                    }
+                }
+            }
+        }
+    });
+}
+
+
+
 
 function loadCSV() {
     $.ajax({
@@ -66,9 +98,9 @@ function loadCSV() {
 
 function getTimeLimitForType(vehicleType) {
     switch (vehicleType.toLowerCase()) {
-        case 'compact car': return 30 * 60 * 1000; // 30 minutes
-        case 'medium car': return 45 * 60 * 1000; // 45 minutes
-        case 'full-size car': return 30 * 60 * 1000; // 30 minutes
+        case 'compact': return 30 * 60 * 1000; // 30 minutes
+        case 'medium': return 30 * 60 * 1000; // 30 minutes
+        case 'full-size': return 30 * 60 * 1000; // 30 minutes
         case 'class 1 truck': return 60 * 60 * 1000; // 60 minutes
         case 'class 2 truck': return 120 * 60 * 1000; // 120 minutes
         default: return 0;
@@ -79,51 +111,64 @@ function updateIconBasedOnType(vehicleType) {
 
     switch (vehicleType.toLowerCase()) {
         case 'compact':
+            console.log("something");
             iconId=checkicon(vehicleType.toLowerCase());
             if (!iconId) {
                 iconId = 'compactCarIcon';
                 compactCars=true;
             }
-           
-            else{
+             settimelimit("compact",iconId,30*60*1000); 
                 break;
-            }
-            settimelimit("compact",iconId); 
 
         case 'medium':
             iconId=checkicon(vehicleType.toLowerCase());
+            console.log("something");
             if (!iconId) {
                 iconId = 'mediumCarIcon';
-                compactCars=true;
+                meduimcars=true;
             }
-            break;
+                settimelimit("medium",iconId,30*60*1000); 
+                break;
         case 'full-size':
             iconId=checkicon(vehicleType.toLowerCase());
             if (!iconId) {
                 iconId = 'fullSizeCarIcon';
-                compactCars=true;
+                fullsizecars=true;
             }
-            break;
+            settimelimit("full",iconId,2*60*60*1000); 
+                break;
         case 'class 1 truck':
             iconId=checkicon(vehicleType.toLowerCase());
             if (!iconId) {
+                
                 iconId = 'class1TruckIcon';
-                compactCars=true;
+                class1=true;
+                
             }
-            break;
+            settimelimit("class1",iconId,60*60*1000); 
+            
+                break;
         case 'class 2 truck':
             iconId=checkicon(vehicleType.toLowerCase());
             if (!iconId) {
+                if (!class2){
+                console.log("yess")
                 iconId = 'class2TruckIcon';
-                compactCars=true;
+                class2=true;}
             }
-            break;
+            
+            settimelimit("class2",iconId,120*60*1000); 
+                break;
+            
+            
         default:
             return; // Do nothing if vehicle type doesn't match
     }
 
     if (iconId) {
-        document.getElementById(iconId).style.color = "red"; // Example: Change the color of the icon
+        document.getElementById(iconId).style.color = "red"; 
+        iconId=true;;
+        // Example: Change the color of the icon
         // You can add more styling changes or swap the icon image here
     }
 }
@@ -173,19 +218,73 @@ else if (!openforall2){
 
 
 
-function settimelimit(type,iconId){
-if (type==="compact"){
+function settimelimit(type,iconId,duration){
     setTimeout(function()   {           
-        
-    },1)
+    if(iconId==="compactCarIcon"){ 
+        compactCars=false;
+        compactCarsarray=[]
+        document.getElementById(iconId).style.color = "green"; // Example: Change the color of the icon
+    }if(iconId==="mediumCarIcon"){ 
+        meduimcars=false;
+        meduimcarsarray=[]
+        document.getElementById(iconId).style.color = "green"; // Example: Change the color of the icon
+    }if(iconId==="fullSizeCarIcon"){ 
+        fullsizecars=false;
+        fullsizecarsarray=[]
+        document.getElementById(iconId).style.color = "green"; // Example: Change the color of the icon
+    }if(iconId==="class1TruckIcon"){  
+        class1=false;
+        class1array=[]
+        document.getElementById(iconId).style.color = "green"; // Example: Change the color of the icon
+    }if(iconId==="class2TruckIcon"){ 
+        class2=false;
+        class2array=[]
+        document.getElementById(iconId).style.color = "green"; // Example: Change the color of the icon
+    }
+    
+    
+    
+    else if(iconId==="open1"){
+        openforall1=false;
+        openforall1array=[]
+        document.getElementById(iconId).style.color = "green"; // Example: Change the color of the icon
+    }else if(iconId==="open2"){
+        openforall2false;
+        openforall2array=[]
+        document.getElementById(iconId).style.color = "green"; // Example: Change the color of the icon
+    }else if(iconId==="open3"){
+        openforall3=false;
+        openforall3array=[]
+        document.getElementById(iconId).style.color = "green"; // Example: Change the color of the icon
+    }else if(iconId==="open4"){
+        openforall4=false;
+        openforall4array=[]
+        document.getElementById(iconId).style.color = "green"; // Example: Change the color of the icon
+    }else if(iconId==="open5"){
+        openforall5=false;
+        openforall5array=[]
+        document.getElementById(iconId).style.color = "green"; // Example: Change the color of the icon
+    }else{
+    }   
+    loadCSV()
+    },duration)
+
+    
 }
 
 
-}
+
 onload = loadCSV()
 function incrementDate() {
+    if (todayDate.getTime() ==="") //
     todayDate = new Date(todayDate.getTime() + 1000); // Add 1000 milliseconds (1 second)
     console.log(todayDate); // For demonstration, you can remove this line or update the DOM instead
 }
 
 setInterval(incrementDate, 1000); // Call incrementDate every 1000 milliseconds (1 second)
+console.log(compactCars); 
+console.log(meduimcars); 
+console.log(fullsizecars); 
+console.log(class1); 
+console.log(class2);
+
