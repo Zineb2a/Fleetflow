@@ -1,8 +1,5 @@
 
-
-
 let csvData = []; // Global variable to store CSV data
-
 
 let compactCars = false;
 let meduimcars = false;
@@ -15,11 +12,6 @@ let openforall3 = false
 let openforall4 = false;
 let openforall5 = false 
 
-
-
-
-
-
 let compactCarsarray=[];
 let meduimcarsarray=[];
 let fullsizecarsarray=[]
@@ -31,11 +23,7 @@ let openforall3array=[]
 let openforall4array=[];
 let openforall5array=[] 
 
-
 let todayDate = new Date("2022-10-17 7:12"); // Example: 22 November 2022, 5PM
-
-
-
 
 function loadCSV() {
     $.ajax({
