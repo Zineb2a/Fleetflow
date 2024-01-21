@@ -15,10 +15,25 @@ let openforall3 = false
 let openforall4 = false;
 let openforall5 = false 
 
+let compactcarsnos=0;
+let mediumcarsnos=0;
+let fullsizecarsnos=0;
+let class1trucksnos=0;
+let class2trucksnos=0
+
+let compactcarsturn=0;
+let mediumcarsturn=0;
+let fullsizecarsturn=0;
+let class1trucksturn=0;
+let class2trucksturn=0
 
 
 
-
+let rejectCompactCarsarray=[]
+let rejectmeduimcarsarray=[]
+let rejectfullsizearray=[]
+let rejectClass1array=[]
+let rejectClass2array=[]
 
 let compactCarsarray=[];
 let meduimcarsarray=[];
@@ -32,8 +47,8 @@ let openforall4array=[];
 let openforall5array=[] 
 
 
-let todayDate = new Date("2022-10-17 7:12"); // Example: 22 November 2022, 5PM
-
+let todayDate = new Date("2022-10-20 18:12"); // Example: 22 November 2022, 5PM
+let stardate = new Date(todayDate.setHours(7))
 
 
 
@@ -53,23 +68,30 @@ function loadCSV() {
             csvData = data;
             
             for (let i in data) {
-                if(new Date(data[i]["2022-11-27 07:16"]).getDate() ===todayDate.getDate())
-                {
-                
+                while (new Date(stardate.toISOString).getTime < new Date(todayDate.toISOString).getTime){
 
-                let registrationTime = new Date(data[i]["2022-11-27 07:16"]); // Assuming this is the key in your CSV
-                let vehicleType = data[i].compact; // Assuming this is the key in your CSV
-                let timeLimit = getTimeLimitForType(vehicleType);
-
-                let timeDifference = todayDate - registrationTime;
-                
+                    if(new Date(data[i]["2022-11-27 07:16"]).getDate() ===todayDate.getDate())
+                    {
+                        
+                        
+                        let registrationTime = new Date(data[i]["2022-11-27 07:16"]); // Assuming this is the key in your CSV
+                        let vehicleType = data[i].compact; // Assuming this is the key in your CSV
+                        let timeLimit = getTimeLimitForType(vehicleType);
+                        
+                        let timeDifference = todayDate - registrationTime;
+                        
                 // Check if the registration time is within the time limit
                 if (timeDifference >= 0 && timeDifference <= timeLimit) {
                     console.log(data[i]["2022-11-27 07:16"]);
-                    updateIconBasedOnType(vehicleType);
+                    updateIconBasedOnType(data[i],vehicleType);
                 }
             }
+            console.log("doing")
+            stardate = new Date(stardate.getTime() + 30 *60*1000); // Add 1000
         }
+    }
+calculate()
+
         }
     });
 }
@@ -84,7 +106,7 @@ function getTimeLimitForType(vehicleType) {
         default: return 0;
     }
 }
-function updateIconBasedOnType(vehicleType) {
+function updateIconBasedOnType(data,vehicleType) {
     let iconId="";
 
     switch (vehicleType.toLowerCase()) {
@@ -94,7 +116,12 @@ function updateIconBasedOnType(vehicleType) {
             if (!iconId) {
                 iconId = 'compactCarIcon';
                 compactCars=true;
+            }else{
+                rejectCompactCarsarray.push(data);
+                break;
+                
             }
+            compactCarsarray.push(data)
              settimelimit("compact",iconId,30*60*1000); 
                 break;
 
@@ -104,7 +131,12 @@ function updateIconBasedOnType(vehicleType) {
             if (!iconId) {
                 iconId = 'mediumCarIcon';
                 meduimcars=true;
+            }else{
+                rejectMeduimCarsarray.push(data);
+                break;
+                
             }
+            meduimcarsarray.push(data)
                 settimelimit("medium",iconId,30*60*1000); 
                 break;
         case 'full-size':
@@ -112,7 +144,12 @@ function updateIconBasedOnType(vehicleType) {
             if (!iconId) {
                 iconId = 'fullSizeCarIcon';
                 fullsizecars=true;
+            }else{
+                rejectfullsizeCarsarray.push(data);
+                break;
+                
             }
+            fullsizecarsarray.push(data)
             settimelimit("full",iconId,2*60*60*1000); 
                 break;
         case 'class 1 truck':
@@ -122,7 +159,12 @@ function updateIconBasedOnType(vehicleType) {
                 iconId = 'class1TruckIcon';
                 class1=true;
                 
+            }else{
+                rejectClass1Carsarray.push(data);
+                break;
+                
             }
+            class1array.push(data)
             settimelimit("class1",iconId,60*60*1000); 
             
                 break;
@@ -133,8 +175,14 @@ function updateIconBasedOnType(vehicleType) {
                 console.log("yess")
                 iconId = 'class2TruckIcon';
                 class2=true;}
+            }else{
+                console.log("no")
+                rejectClass2array.push(data);
+                break;
+                
             }
-            
+            console.log("yess")
+            class2array.push(data)
             settimelimit("class2",iconId,120*60*1000); 
                 break;
             
@@ -144,7 +192,7 @@ function updateIconBasedOnType(vehicleType) {
     }
 
     if (iconId) {
-        document.getElementById(iconId).style.color = "red"; 
+        // document.getElementById(iconId).style.color = "red"; 
         iconId=true;;
         // Example: Change the color of the icon
         // You can add more styling changes or swap the icon image here
@@ -173,74 +221,40 @@ else if (!openforall2){
     return false
 }
 }
-// window.onload = loadCSV();
-
-
-// function loadCSV() {
-//     $.ajax({
-//         type: 'GET',
-//         url: "http://localhost:8080/api/v1/user/csv",
-    
-//         success: function (data) {
-//            csvData = data
-           
-//        
-  
-//           }  
-
-
-
-//     })
-// }
-// console.log(csvData)
-
 
 
 function settimelimit(type,iconId,duration){
     setTimeout(function()   {           
     if(iconId==="compactCarIcon"){ 
         compactCars=false;
-        compactCarsarray=[]
         document.getElementById(iconId).style.color = "green"; // Example: Change the color of the icon
     }if(iconId==="mediumCarIcon"){ 
         meduimcars=false;
-        meduimcarsarray=[]
         document.getElementById(iconId).style.color = "green"; // Example: Change the color of the icon
     }if(iconId==="fullSizeCarIcon"){ 
         fullsizecars=false;
-        fullsizecarsarray=[]
         document.getElementById(iconId).style.color = "green"; // Example: Change the color of the icon
     }if(iconId==="class1TruckIcon"){  
         class1=false;
-        class1array=[]
         document.getElementById(iconId).style.color = "green"; // Example: Change the color of the icon
     }if(iconId==="class2TruckIcon"){ 
         class2=false;
-        class2array=[]
         document.getElementById(iconId).style.color = "green"; // Example: Change the color of the icon
     }
-    
-    
-    
     else if(iconId==="open1"){
         openforall1=false;
-        openforall1array=[]
         document.getElementById(iconId).style.color = "green"; // Example: Change the color of the icon
     }else if(iconId==="open2"){
         openforall2false;
-        openforall2array=[]
         document.getElementById(iconId).style.color = "green"; // Example: Change the color of the icon
     }else if(iconId==="open3"){
         openforall3=false;
-        openforall3array=[]
         document.getElementById(iconId).style.color = "green"; // Example: Change the color of the icon
     }else if(iconId==="open4"){
         openforall4=false;
-        openforall4array=[]
         document.getElementById(iconId).style.color = "green"; // Example: Change the color of the icon
     }else if(iconId==="open5"){
         openforall5=false;
-        openforall5array=[]
         document.getElementById(iconId).style.color = "green"; // Example: Change the color of the icon
     }else{
     }   
@@ -265,4 +279,55 @@ console.log(meduimcars);
 console.log(fullsizecars); 
 console.log(class1); 
 console.log(class2);
+
+console.log(class2array);
+
+function calculate(){
+
+    compactcarsnos=compactCarsarray.length
+    mediumcarsnos=meduimcarsarray.length;
+    fullsizecarsnos=fullsizecarsarray.length;
+    class1trucksnos=class1array.length;
+    class2trucksnos=class2array.length
+
+    compactcarsturn=rejectCompactCarsarray.length
+    mediumcarsturn=rejectmeduimcarsarray.length;
+    fullsizecarsturn=rejectfullsizearray.length;
+    class1trucksturn=rejectClass1array.length;
+    class2trucksturn=rejectClass2array.length
+
+    myBarChart= document.getElementById("myBarChart");
+    newDataValues=[compactCarsarray.length, meduimcarsarray.length, fullsizecarsarray.length, class1array.length, class2array.length]
+    myBarChart.data = newDataValues;
+console.log(class2array.length);
+
+let compactcarsRevenue=compactcarsnos*150;
+let mediumcarsRevenue=mediumcarsnos*150;
+let fullsizecarsRevenue=fullsizecarsnos*150;
+let class1trucksRevenue=class1trucksnos*250;
+let class2trucksRevenue=class2trucksnos*750
+
+document.getElementById("compactcarsRevenue").innerText=`${compactcarsRevenue} $`;
+document.getElementById("mediumcarsRevenue").innerText=`${mediumcarsRevenue} $`;
+document.getElementById("fullsizecarsRevenue").innerText=`${fullsizecarsRevenue} $`;
+document.getElementById("class1trucksRevenue").innerText=`${class1trucksRevenue} $`;
+document.getElementById("class2trucksRevenue").innerText=`${class2trucksRevenue} $`;
+
+let compactcarsRevenuelost=compactcarsturn*150;
+let mediumcarsRevenuelost=mediumcarsturn*150;
+let fullsizecarsRevenuelost=fullsizecarsturn*150;
+let class1trucksRevenuelost=class1trucksturn*250;
+let class2trucksRevenuelost=class2trucksturn*750
+
+document.getElementById("compactcarsRevenuelost").innerText=`${compactcarsRevenuelost} $`;
+document.getElementById("mediumcarsRevenuelost").innerText=`${mediumcarsRevenuelost} $`;
+document.getElementById("fullsizecarsRevenuelost").innerText=`${fullsizecarsRevenuelost} $`;
+document.getElementById("class1trucksRevenuelost").innerText=`${class1trucksRevenuelost} $`;
+document.getElementById("class2trucksRevenuelost").innerText=`${class2trucksRevenuelost} $`;
+
+
+
+
+}
+
 

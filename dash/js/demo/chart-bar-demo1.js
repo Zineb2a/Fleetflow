@@ -30,7 +30,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");
-var myBarChart = new Chart(ctx, {
+ let  myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
     labels: ["Compact cars", "Medium cars", "Full-size cars", "Class 1 Trucks", "Class 2 Trucks"],
