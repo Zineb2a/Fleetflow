@@ -1,9 +1,4 @@
-
-
-
 let csvData = []; // Global variable to store CSV data
-
-
 let compactCars = false;
 let meduimcars = false;
 let fullsizecars =false;
@@ -14,27 +9,21 @@ let openforall2 = false;
 let openforall3 = false
 let openforall4 = false;
 let openforall5 = false 
-
 let compactcarsnos=0;
 let mediumcarsnos=0;
 let fullsizecarsnos=0;
 let class1trucksnos=0;
 let class2trucksnos=0
-
 let compactcarsturn=0;
 let mediumcarsturn=0;
 let fullsizecarsturn=0;
 let class1trucksturn=0;
 let class2trucksturn=0
-
-
-
 let rejectCompactCarsarray=[]
 let rejectmeduimcarsarray=[]
 let rejectfullsizearray=[]
 let rejectClass1array=[]
 let rejectClass2array=[]
-
 let compactCarsarray=[];
 let meduimcarsarray=[];
 let fullsizecarsarray=[]
@@ -45,35 +34,27 @@ let openforall2array=[];
 let openforall3array=[]
 let openforall4array=[];
 let openforall5array=[] 
-
-
 let todayDate = new Date("2022-10-20 9:35"); // Example: 22 November 2022, 5PM
-
 function loadCSV() {
     $.ajax({
         type: 'GET',
         url: "http://localhost:8080/api/v1/user/csv",
         success: function (data) {
             const secondDateKey = "2022-11-27 07:16";
-
             data.sort((a, b) => {
                 let dateA = new Date(a[secondDateKey]);
                 let dateB = new Date(b[secondDateKey]);
                 return dateA - dateB;
-
             })
             csvData = data;
             
             for (let i in data) {
-
                 if(new Date(data[i]["2022-11-27 07:16"]).getDate() ===todayDate.getDate())
                 {
                 
-
                 let registrationTime = new Date(data[i]["2022-11-27 07:16"]); // Assuming this is the key in your CSV
                 let vehicleType = data[i].compact; // Assuming this is the key in your CSV
                 let timeLimit = getTimeLimitForType(vehicleType);
-
                 let timeDifference = todayDate - registrationTime;
                 
                 // Check if the registration time is within the time limit
@@ -85,10 +66,8 @@ function loadCSV() {
         }
         calculate()
         }
-
     });
 }
-
 function getTimeLimitForType(vehicleType) {
     switch (vehicleType.toLowerCase()) {
         case 'compact': return 30 * 60 * 1000; // 30 minutes
@@ -101,7 +80,6 @@ function getTimeLimitForType(vehicleType) {
 }
 function updateIconBasedOnType(data,vehicleType) {
     let iconId="";
-
     switch (vehicleType.toLowerCase()) {
         case 'compact':
             console.log("something");
@@ -117,7 +95,6 @@ function updateIconBasedOnType(data,vehicleType) {
             compactCarsarray.push(data)
              settimelimit("compact",iconId,30*60*1000); 
                 break;
-
         case 'medium':
             iconId=checkicon(vehicleType.toLowerCase());
             console.log("something");
@@ -183,7 +160,6 @@ function updateIconBasedOnType(data,vehicleType) {
         default:
             return; // Do nothing if vehicle type doesn't match
     }
-
     if (iconId) {
         // document.getElementById(iconId).style.color = "red"; 
         iconId=true;;
@@ -191,8 +167,6 @@ function updateIconBasedOnType(data,vehicleType) {
         // You can add more styling changes or swap the icon image here
     }
 }
-
-
 function checkicon(vehicleType) {
 if (!openforall1){
     openforall1=true;
@@ -214,8 +188,6 @@ else if (!openforall2){
     return false
 }
 }
-
-
 function settimelimit(type,iconId,duration){
     setTimeout(function()   {           
     if(iconId==="compactCarIcon"){ 
@@ -253,94 +225,114 @@ function settimelimit(type,iconId,duration){
     }   
     loadCSV()
     },duration)
-
     
 }
 
 
 
+onload = loadCSV()
 function incrementDate() {
     if (todayDate.getTime() ==="") //
     todayDate = new Date(todayDate.getTime() + 1000); // Add 1000 milliseconds (1 second)
     console.log(todayDate); // For demonstration, you can remove this line or update the DOM instead
 }
-
 setInterval(incrementDate, 1000); // Call incrementDate every 1000 milliseconds (1 second)
 console.log(compactCars); 
 console.log(meduimcars); 
 console.log(fullsizecars); 
 console.log(class1); 
 console.log(class2);
-
 console.log(class2array);
-
 function calculate(){
-
     compactcarsnos=compactCarsarray.length
     mediumcarsnos=meduimcarsarray.length;
     fullsizecarsnos=fullsizecarsarray.length;
     class1trucksnos=class1array.length;
     class2trucksnos=class2array.length
+
     
     compactcarsturn=rejectCompactCarsarray.length
     mediumcarsturn=rejectmeduimcarsarray.length;
     fullsizecarsturn=rejectfullsizearray.length;
     class1trucksturn=rejectClass1array.length;
     class2trucksturn=rejectClass2array.length
+
     
     newDataValues=[compactCarsarray.length, meduimcarsarray.length, fullsizecarsarray.length, class1array.length, class2array.length]
     myBarChart.data.datasets[0].data = newDataValues;
     myBarChart.update();
+console.log(class2array.length);
+
+ compactcarsRevenue=compactcarsnos*150;
+ mediumcarsRevenue=mediumcarsnos*150;
+ fullsizecarsRevenue=fullsizecarsnos*150;
+ class1trucksRevenue=class1trucksnos*250;
+ class2trucksRevenue=class2trucksnos*750
+
+document.getElementById("compactcarsRevenue").innerText=`${compactcarsRevenue} $`;
+document.getElementById("mediumcarsRevenue").innerText=`${mediumcarsRevenue} $`;
+document.getElementById("fullsizecarsRevenue").innerText=`${fullsizecarsRevenue} $`;
+document.getElementById("class1trucksRevenue").innerText=`${class1trucksRevenue} $`;
+document.getElementById("class2trucksRevenue").innerText=`${class2trucksRevenue} $`;
+
+ compactcarsRevenuelost=compactcarsturn*150;
+ mediumcarsRevenuelost=mediumcarsturn*150;
+ fullsizecarsRevenuelost=fullsizecarsturn*150;
+ class1trucksRevenuelost=class1trucksturn*250;
+ class2trucksRevenuelost=class2trucksturn*750
+
+
+newDataValues=[compactcarsturn,mediumcarsturn, fullsizecarsturn, class1trucksturn, class2trucksturn]
+myBarChart2.data.datasets[0].data = newDataValues;
+myBarChart2.update();
+
+
+document.getElementById("compactcarsRevenuelost").innerText=`${compactcarsRevenuelost} $`;
+document.getElementById("mediumcarsRevenuelost").innerText=`${mediumcarsRevenuelost} $`;
+document.getElementById("fullsizecarsRevenuelost").innerText=`${fullsizecarsRevenuelost} $`;
+document.getElementById("class1trucksRevenuelost").innerText=`${class1trucksRevenuelost} $`;
+document.getElementById("class2trucksRevenuelost").innerText=`${class2trucksRevenuelost} $`;
     console.log(class2array.length);
-    
+
     let compactcarsRevenue=compactcarsnos*150;
     let mediumcarsRevenue=mediumcarsnos*150;
     let fullsizecarsRevenue=fullsizecarsnos*150;
     let class1trucksRevenue=class1trucksnos*250;
     let class2trucksRevenue=class2trucksnos*750
-    
+
     document.getElementById("compactcarsRevenue").innerText=`${compactcarsRevenue} $`;
     document.getElementById("mediumcarsRevenue").innerText=`${mediumcarsRevenue} $`;
     document.getElementById("fullsizecarsRevenue").innerText=`${fullsizecarsRevenue} $`;
     document.getElementById("class1trucksRevenue").innerText=`${class1trucksRevenue} $`;
     document.getElementById("class2trucksRevenue").innerText=`${class2trucksRevenue} $`;
-    
+
     let compactcarsRevenuelost=compactcarsturn*150;
     let mediumcarsRevenuelost=mediumcarsturn*150;
     let fullsizecarsRevenuelost=fullsizecarsturn*150;
     let class1trucksRevenuelost=class1trucksturn*250;
     let class2trucksRevenuelost=class2trucksturn*750
-    
-    
+
+
     newDataValues=[compactcarsturn,mediumcarsturn, fullsizecarsturn, class1trucksturn, class2trucksturn]
     myBarChart2.data.datasets[0].data = newDataValues;
     myBarChart2.update();
-    
-    
-    document.getElementById("compactcarsRevenuelost").innerText=`${compactcarsRevenuelost} $`;
-    document.getElementById("mediumcarsRevenuelost").innerText=`${mediumcarsRevenuelost} $`;
-    document.getElementById("fullsizecarsRevenuelost").innerText=`${fullsizecarsRevenuelost} $`;
-    document.getElementById("class1trucksRevenuelost").innerText=`${class1trucksRevenuelost} $`;
-    document.getElementById("class2trucksRevenuelost").innerText=`${class2trucksRevenuelost} $`;
     
     let totalRevenue=compactcarsRevenue+mediumcarsRevenue+fullsizecarsRevenue+class1trucksRevenue+class2trucksRevenue+compactcarsRevenuelost+mediumcarsRevenuelost+fullsizecarsRevenuelost+class1trucksRevenuelost+class2trucksRevenuelost;
     let totalRevenueLost=compactcarsRevenuelost+mediumcarsRevenuelost+fullsizecarsRevenuelost+class1trucksRevenuelost+class2trucksRevenuelost
     let totalRevenueLostPercentage=totalRevenueLost/totalRevenue*100;
     let totalRevenuePercentage=100-totalRevenueLostPercentage;
-    
+
     myPieChart.data.datasets[0].data = [totalRevenue-totalRevenueLost,totalRevenueLost];
     myPieChart.update()
-    
-}
-
-
-function logincheck(){
-   if(localStorage.getItem("login")=="false"){
-    alert("Please Login First")
-    location.href="login.html"
-   }else{
-       loadCSV()
 
 }
-}
-onload = logincheck()
+
+let totalRevenue=compactcarsRevenue+mediumcarsRevenue+fullsizecarsRevenue+class1trucksRevenue+class2trucksRevenue+compactcarsRevenuelost+mediumcarsRevenuelost+fullsizecarsRevenuelost+class1trucksRevenuelost+class2trucksRevenuelost;
+let totalRevenueLost=compactcarsRevenuelost+mediumcarsRevenuelost+fullsizecarsRevenuelost+class1trucksRevenuelost+class2trucksRevenuelost
+let totalRevenueLostPercentage=totalRevenueLost/totalRevenue*100;
+let totalRevenuePercentage=100-totalRevenueLostPercentage;
+
+myPieChart.data.datasets[0].data = [totalRevenue-totalRevenueLost,totalRevenueLost];
+myPieChart.update()
+
+onload = loadCSV()

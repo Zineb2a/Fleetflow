@@ -192,11 +192,13 @@
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Revenue per Car Category</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <div style="display: flex; align-items: center;">
+                                                <div  style="display: flex; align-items: center;">
                                                     <div style="margin-right:80px;">
                                                         Compact cars
                                                     </div>
-                                                    10 000$<!--TO CHANGE-->
+                                                    <div id="compactcarsRevenue">
+                                                        0$<!--TO CHANGE-->
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -204,7 +206,10 @@
                                                     <div style="margin-right:80px;">
                                                         Medium cars
                                                     </div>
-                                                    20 000$<!--TO CHANGE-->
+                                                    `
+                                                    <div id="mediumcarsRevenue">
+                                                        0$<!--TO CHANGE-->
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -212,7 +217,9 @@
                                                     <div style="margin-right:80px;">
                                                         Full-size cars
                                                     </div>
-                                                    22 000$ <!--TO CHANGE-->
+                                                    <div id="fullsizecarsRevenue">
+                                                        0$<!--TO CHANGE-->
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -220,7 +227,9 @@
                                                     <div style="margin-right:80px;">
                                                         Class 1 Trucks
                                                     </div>
-                                                    1000$ <!--TO CHANGE-->
+                                                    <div id="class1trucksRevenue">
+                                                        0$<!--TO CHANGE-->
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -228,7 +237,9 @@
                                                     <div style="margin-right:80px;">
                                                         Class 2 Trucks
                                                     </div>
-                                                    1500$ <!--TO CHANGE-->
+                                                    <div id="class2trucksRevenue">
+                                                        0$<!--TO CHANGE-->
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -239,7 +250,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- Number of Turn-Away Cars per Category -->
                         <div class="col-xl-5 col-md-6 mb-4">
                             <div class="card border-left-info shadow h-100 py-2">
@@ -258,9 +268,7 @@
                                 </div>
                             </div>
                         </div>
-
                         <script src="js/demo/chart-bar-demo.js"></script>
-
                         <!-- Revenue Lost per Car Category -->
                         <div class="col-xl-5 col-md-6 mb-4">
                             <div class="card border-left-warning shadow h-100 py-2">
@@ -274,7 +282,9 @@
                                                     <div style="margin-right:80px;">
                                                         Compact cars
                                                     </div>
-                                                    10 000$<!--TO CHANGE-->
+                                                    <div id="compactcarsRevenuelost">
+                                                        0$<!--TO CHANGE-->
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -282,7 +292,9 @@
                                                     <div style="margin-right:80px;">
                                                         Medium cars
                                                     </div>
-                                                    20 000$<!--TO CHANGE-->
+                                                    <div id="mediumcarsRevenuelost">
+                                                        0$<!--TO CHANGE-->
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -290,7 +302,9 @@
                                                     <div style="margin-right:80px;">
                                                         Full-size cars
                                                     </div>
-                                                    22 000$ <!--TO CHANGE-->
+                                                    <div id="fullsizecarsRevenuelost">
+                                                        0$<!--TO CHANGE-->
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -298,7 +312,9 @@
                                                     <div style="margin-right:80px;">
                                                         Class 1 Trucks
                                                     </div>
-                                                    1000$ <!--TO CHANGE-->
+                                                    <div id="class1trucksRevenuelost">
+                                                        0$<!--TO CHANGE-->
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -306,7 +322,9 @@
                                                     <div style="margin-right:80px;">
                                                         Class 2 Trucks
                                                     </div>
-                                                    1500$ <!--TO CHANGE-->
+                                                    <div id="class2trucksRevenuelost">
+                                                        0$<!--TO CHANGE-->
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -318,6 +336,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Content Row --
                     <!-- Content Row -->
 
                     <div class="row">
@@ -430,18 +449,9 @@
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-
-   
-
-
-=======
->>>>>>> Stashed changes
+    <script src="index.js"></script>
     <script src="logout.js"></script>
 
 </body>
->>>>>>> ca5c35db5ff3772aefa112906acf792ab4d2a5bc
 
 </html>
