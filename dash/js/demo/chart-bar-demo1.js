@@ -70,7 +70,7 @@ var myBarChart = new Chart(ctx, {
         ticks: {
           min: 0,
           maxTicksLimit: 10, 
-          stepSize: 50,  
+          stepSize: 5000, 
           padding: 10,
           callback: function(value, index, values) {
             return '$' + number_format(value);
@@ -83,9 +83,8 @@ var myBarChart = new Chart(ctx, {
           borderDash: [2],
           zeroLineBorderDash: [2]
         }
-    
       }],
-    },
+          },
     legend: {
       display: false
     },

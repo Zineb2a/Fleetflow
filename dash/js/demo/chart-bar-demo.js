@@ -29,8 +29,8 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 }
 
 // Bar Chart Example
-var ctx = document.getElementById("myBarChart");
-var myBarChart = new Chart(ctx, {
+var ctx2 = document.getElementById("myBarChart2");
+var myBarChart2 = new Chart(ctx2, {
   type: 'bar',
   data: {
     labels: ["Compact cars", "Medium cars", "Full-size cars", "Class 1 Trucks", "Class 2 Trucks"],
