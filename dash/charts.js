@@ -84,7 +84,12 @@ function updateIconBasedOnType(vehicleType) {
                 iconId = 'compactCarIcon';
                 compactCars=true;
             }
-            break;
+           
+            else{
+                break;
+            }
+            settimelimit("compact",iconId); 
+
         case 'medium':
             iconId=checkicon(vehicleType.toLowerCase());
             if (!iconId) {
@@ -165,4 +170,22 @@ else if (!openforall2){
 //     })
 // }
 // console.log(csvData)
+
+
+
+function settimelimit(type,iconId){
+if (type==="compact"){
+    setTimeout(function()   {           
+        
+    },1)
+}
+
+
+}
 onload = loadCSV()
+function incrementDate() {
+    todayDate = new Date(todayDate.getTime() + 1000); // Add 1000 milliseconds (1 second)
+    console.log(todayDate); // For demonstration, you can remove this line or update the DOM instead
+}
+
+setInterval(incrementDate, 1000); // Call incrementDate every 1000 milliseconds (1 second)
