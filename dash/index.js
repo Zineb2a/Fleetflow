@@ -47,10 +47,7 @@ let openforall4array=[];
 let openforall5array=[] 
 
 
-let todayDate = new Date("2022-10-20 18:12"); // Example: 22 November 2022, 5PM
-let stardate = new Date(todayDate.setHours(7))
-
-
+let todayDate = new Date("2022-10-20 9:35"); // Example: 22 November 2022, 5PM
 
 function loadCSV() {
     $.ajax({
@@ -68,31 +65,27 @@ function loadCSV() {
             csvData = data;
             
             for (let i in data) {
-                while (new Date(stardate.toISOString).getTime < new Date(todayDate.toISOString).getTime){
 
-                    if(new Date(data[i]["2022-11-27 07:16"]).getDate() ===todayDate.getDate())
-                    {
-                        
-                        
-                        let registrationTime = new Date(data[i]["2022-11-27 07:16"]); // Assuming this is the key in your CSV
-                        let vehicleType = data[i].compact; // Assuming this is the key in your CSV
-                        let timeLimit = getTimeLimitForType(vehicleType);
-                        
-                        let timeDifference = todayDate - registrationTime;
-                        
+                if(new Date(data[i]["2022-11-27 07:16"]).getDate() ===todayDate.getDate())
+                {
+                
+
+                let registrationTime = new Date(data[i]["2022-11-27 07:16"]); // Assuming this is the key in your CSV
+                let vehicleType = data[i].compact; // Assuming this is the key in your CSV
+                let timeLimit = getTimeLimitForType(vehicleType);
+
+                let timeDifference = todayDate - registrationTime;
+                
                 // Check if the registration time is within the time limit
                 if (timeDifference >= 0 && timeDifference <= timeLimit) {
                     console.log(data[i]["2022-11-27 07:16"]);
                     updateIconBasedOnType(data[i],vehicleType);
                 }
             }
-            console.log("doing")
-            stardate = new Date(stardate.getTime() + 30 *60*1000); // Add 1000
         }
-    }
-calculate()
+        calculate()
+        }
 
-        }
     });
 }
 
@@ -160,7 +153,7 @@ function updateIconBasedOnType(data,vehicleType) {
                 class1=true;
                 
             }else{
-                rejectClass1Carsarray.push(data);
+                rejectClass1array.push(data);
                 break;
                 
             }
@@ -296,9 +289,9 @@ function calculate(){
     class1trucksturn=rejectClass1array.length;
     class2trucksturn=rejectClass2array.length
 
-    myBarChart= document.getElementById("myBarChart");
     newDataValues=[compactCarsarray.length, meduimcarsarray.length, fullsizecarsarray.length, class1array.length, class2array.length]
-    myBarChart.data = newDataValues;
+    myBarChart.data.datasets[0].data = newDataValues;
+    myBarChart.update();
 console.log(class2array.length);
 
 let compactcarsRevenue=compactcarsnos*150;
@@ -319,14 +312,25 @@ let fullsizecarsRevenuelost=fullsizecarsturn*150;
 let class1trucksRevenuelost=class1trucksturn*250;
 let class2trucksRevenuelost=class2trucksturn*750
 
+
+newDataValues=[compactcarsturn,mediumcarsturn, fullsizecarsturn, class1trucksturn, class2trucksturn]
+myBarChart2.data.datasets[0].data = newDataValues;
+myBarChart2.update();
+
+
 document.getElementById("compactcarsRevenuelost").innerText=`${compactcarsRevenuelost} $`;
 document.getElementById("mediumcarsRevenuelost").innerText=`${mediumcarsRevenuelost} $`;
 document.getElementById("fullsizecarsRevenuelost").innerText=`${fullsizecarsRevenuelost} $`;
 document.getElementById("class1trucksRevenuelost").innerText=`${class1trucksRevenuelost} $`;
 document.getElementById("class2trucksRevenuelost").innerText=`${class2trucksRevenuelost} $`;
 
+let totalRevenue=compactcarsRevenue+mediumcarsRevenue+fullsizecarsRevenue+class1trucksRevenue+class2trucksRevenue+compactcarsRevenuelost+mediumcarsRevenuelost+fullsizecarsRevenuelost+class1trucksRevenuelost+class2trucksRevenuelost;
+let totalRevenueLost=compactcarsRevenuelost+mediumcarsRevenuelost+fullsizecarsRevenuelost+class1trucksRevenuelost+class2trucksRevenuelost
+let totalRevenueLostPercentage=totalRevenueLost/totalRevenue*100;
+let totalRevenuePercentage=100-totalRevenueLostPercentage;
 
-
+myPieChart.data.datasets[0].data = [totalRevenue-totalRevenueLost,totalRevenueLost];
+myPieChart.update()
 
 }
 
