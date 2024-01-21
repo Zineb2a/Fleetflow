@@ -1,0 +1,98 @@
+/* General Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* Adding some shadow for depth */
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle; /* Aligning content vertically */
+}
+
+th {
+    background-color: #4e73df; /* Darker header color */
+    color: white;
+}
+
+/* Button Styling */
+.sort-button {
+    background-color: #4e73df;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.sort-button:hover {
+    background-color: #9aa9d5; /* Slightly darker color on hover */
+}
+
+/* File Input Styling */
+#csvFileInput {
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Adding some styling to the title cell */
+.table-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    background-color: #f2f2f2;
+}
+
+/* General styles for the select element */
+#entriesCount {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Styling the dropdown arrow */
+#entriesCount {
+    -webkit-appearance: none;  /* Removes default Chrome and Safari style */
+    -moz-appearance: none;     /* Removes default style Firefox */
+    appearance: none;          /* Removes default style of select in all browsers */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position-x: calc(100% - 1px);
+    background-position-y: center;
+    
+}
+
+/* Hover and focus styles */
+#entriesCount:hover,
+#entriesCount:focus {
+    border-color: #aaa;
+}
+
+/* Option styling */
+#entriesCount option {
+    padding: 10px;
+    background-color: white;
+    color: #333;
+}
+
+
+.sort-button:hover {
+    background-color: #c1d4ff;
+}
