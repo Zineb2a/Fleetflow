@@ -15,23 +15,23 @@ function isSpotOccupied(appointment, currentTime, vehicleType) {
 
     // Check if the current time falls within the appointment duration
     return appointment.vehicleType === vehicleType &&
-           appointmentTime <= currentTime && 
-           new Date(appointmentTime.getTime() + duration) > currentTime;
+    appointmentTime <= currentTime && 
+           new Date( appointmentTime.getTime() + duration) > currentTime;
 }
 
-// Get duration in milliseconds based on vehicle type
+// Switch case to get the duration in milliseconds based on vehicle type
 function getDurationForVehicleType(vehicleType) {
     switch (vehicleType.trim().toLowerCase()) {
         case 'compact':
-            return 30 * 60 * 1000; // 30 minutes in milliseconds
+            return 30 * 60 * 1000; //Convert minutes into miliseconds
         case 'medium':
-            return 30 * 60 * 1000; // 30 minutes in milliseconds
+            return 30 * 60 * 1000;
         case 'full-size':
-            return 30 * 60 * 1000; // 30 minutes in milliseconds
+            return 30 * 60 * 1000;
         case 'class 1 truck':
-            return 60 * 60 * 1000; // 1 hour in milliseconds
+            return 60 * 60 * 1000; 
         case 'class 2 truck':
-            return 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+            return 2 * 60 * 60 * 1000; 
         default:
             return 0;
     }
