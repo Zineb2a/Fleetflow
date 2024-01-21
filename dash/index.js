@@ -243,6 +243,8 @@ console.log(fullsizecars);
 console.log(class1); 
 console.log(class2);
 console.log(class2array);
+
+
 function calculate(){
     compactcarsnos=compactCarsarray.length
     mediumcarsnos=meduimcarsarray.length;
@@ -287,36 +289,12 @@ myBarChart2.data.datasets[0].data = newDataValues;
 myBarChart2.update();
 
 
-document.getElementById("compactcarsRevenuelost").innerText=`${compactcarsRevenuelost} $`;
-document.getElementById("mediumcarsRevenuelost").innerText=`${mediumcarsRevenuelost} $`;
-document.getElementById("fullsizecarsRevenuelost").innerText=`${fullsizecarsRevenuelost} $`;
-document.getElementById("class1trucksRevenuelost").innerText=`${class1trucksRevenuelost} $`;
-document.getElementById("class2trucksRevenuelost").innerText=`${class2trucksRevenuelost} $`;
-    console.log(class2array.length);
+    document.getElementById("compactcarsRevenuelost").innerText=`${compactcarsRevenuelost} $`;
+    document.getElementById("mediumcarsRevenuelost").innerText=`${mediumcarsRevenuelost} $`;
+    document.getElementById("fullsizecarsRevenuelost").innerText=`${fullsizecarsRevenuelost} $`;
+    document.getElementById("class1trucksRevenuelost").innerText=`${class1trucksRevenuelost} $`;
+    document.getElementById("class2trucksRevenuelost").innerText=`${class2trucksRevenuelost} $`;
 
-    let compactcarsRevenue=compactcarsnos*150;
-    let mediumcarsRevenue=mediumcarsnos*150;
-    let fullsizecarsRevenue=fullsizecarsnos*150;
-    let class1trucksRevenue=class1trucksnos*250;
-    let class2trucksRevenue=class2trucksnos*750
-
-    document.getElementById("compactcarsRevenue").innerText=`${compactcarsRevenue} $`;
-    document.getElementById("mediumcarsRevenue").innerText=`${mediumcarsRevenue} $`;
-    document.getElementById("fullsizecarsRevenue").innerText=`${fullsizecarsRevenue} $`;
-    document.getElementById("class1trucksRevenue").innerText=`${class1trucksRevenue} $`;
-    document.getElementById("class2trucksRevenue").innerText=`${class2trucksRevenue} $`;
-
-    let compactcarsRevenuelost=compactcarsturn*150;
-    let mediumcarsRevenuelost=mediumcarsturn*150;
-    let fullsizecarsRevenuelost=fullsizecarsturn*150;
-    let class1trucksRevenuelost=class1trucksturn*250;
-    let class2trucksRevenuelost=class2trucksturn*750
-
-
-    newDataValues=[compactcarsturn,mediumcarsturn, fullsizecarsturn, class1trucksturn, class2trucksturn]
-    myBarChart2.data.datasets[0].data = newDataValues;
-    myBarChart2.update();
-    
     let totalRevenue=compactcarsRevenue+mediumcarsRevenue+fullsizecarsRevenue+class1trucksRevenue+class2trucksRevenue+compactcarsRevenuelost+mediumcarsRevenuelost+fullsizecarsRevenuelost+class1trucksRevenuelost+class2trucksRevenuelost;
     let totalRevenueLost=compactcarsRevenuelost+mediumcarsRevenuelost+fullsizecarsRevenuelost+class1trucksRevenuelost+class2trucksRevenuelost
     let totalRevenueLostPercentage=totalRevenueLost/totalRevenue*100;
@@ -327,12 +305,5 @@ document.getElementById("class2trucksRevenuelost").innerText=`${class2trucksReve
 
 }
 
-let totalRevenue=compactcarsRevenue+mediumcarsRevenue+fullsizecarsRevenue+class1trucksRevenue+class2trucksRevenue+compactcarsRevenuelost+mediumcarsRevenuelost+fullsizecarsRevenuelost+class1trucksRevenuelost+class2trucksRevenuelost;
-let totalRevenueLost=compactcarsRevenuelost+mediumcarsRevenuelost+fullsizecarsRevenuelost+class1trucksRevenuelost+class2trucksRevenuelost
-let totalRevenueLostPercentage=totalRevenueLost/totalRevenue*100;
-let totalRevenuePercentage=100-totalRevenueLostPercentage;
-
-myPieChart.data.datasets[0].data = [totalRevenue-totalRevenueLost,totalRevenueLost];
-myPieChart.update()
 
 onload = loadCSV()
