@@ -1,56 +1,149 @@
-let compactCarsNb = 10000;
-let mediumCarsNb = 20000;
-let fullSizeCarsNb = 22000;
-let class1TrucksNb = 1000;
-let class2TrucksNb = 1500;
+function readFileContent(file) {
+    const reader = new FileReader();
+    return new Promise((resolve, reject) => {
+        reader.onload = event => resolve(event.target.result);
+        reader.onerror = error => reject(error);
+        reader.readAsText(file);
+    });
+}
 
-$(document).ready(function() {
-    // Initialize FullCalendar
-    $('#calendar').fullCalendar({
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay,listWeek'
-        },
-        validRange: {
-            start: '2022-10-01',
-            end: '2022-11-30'
-        },
-        events: function(info, successCallback, failureCallback) {
-            // Fetch and parse the CSV file
-            console.log('Fetching and parsing CSV file...');
-            fetch('http://localhost:3000/api/events') /** TO MODIFY */
-            .then(response => response.json())
-            .then(events => {
-                // Map the fetched data to the required format
-                const mappedEvents = events.map(event => ({
-                    title: event.title,
-                    start: event.start,
-                    end: event.end,
-                    vehiculeType: event.vehiculeType
-                }));
+function parseCSV(text) {
+    const lines = text.split('\n').map(line => line.split(',').map(cell => cell.trim()));
+    lines.sort((a, b) => new Date(a[1]) - new Date(b[1]));
+    return lines;
+}
 
-                // Call the successCallback with the fetched events
-                successCallback(mappedEvents);
-            })
-            .catch(error => {
-                // Call the failureCallback in case of an error
-                console.error('Error fetching events:', error);
-                failureCallback(error);
-            });
-            
-        },
-        timeFormat: 'h:mm a',
-        eventRender: function(event, element) {
-            element.attr('title', event.description);
+function scheduleAppointments(data) {
+    const serviceTime = {
+        'compact': 30,
+        'medium': 30,
+        'full-size': 30,
+        'class 1 truck': 60,
+        'class 2 truck': 120
+    };
+
+    const serviceCharge = {
+        'compact': 150,
+        'medium': 150,
+        'full-size': 150,
+        'class 1 truck': 250,
+        'class 2 truck': 700
+    };
+
+    const bayStatus = new Array(10).fill(null);
+
+    function findAvailableBay(appointmentTime) {
+        for (let i = 0; i < bayStatus.length; i++) {
+            if (!bayStatus[i] || bayStatus[i].endTime <= appointmentTime) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    const scheduledAppointments = [];
+
+    data.sort((a, b) => {
+        const timeDiff = new Date(a[1]) - new Date(b[1]);
+        if (timeDiff !== 0) return timeDiff;
+        return serviceCharge[b[2].toLowerCase()] - serviceCharge[a[2].toLowerCase()];
+    });
+
+    data.forEach((appointment, index) => {
+        if (index === 0 || appointment.length < 3) return;
+
+        const requestTime = new Date(appointment[1]);
+        const vehicleType = appointment[2].toLowerCase();
+        const endTime = new Date(requestTime.getTime() + serviceTime[vehicleType] * 60000);
+        const closingTime = new Date(requestTime);
+        closingTime.setHours(19, 0, 0, 0);
+
+        if (endTime > closingTime) {
+            scheduledAppointments.push([...appointment, 'Turned Away']);
+            return;
         }
 
-    });
-    $('#calendar').fullCalendar('render');
-    $('#compactCarsNb').text(compactCarsNb.toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
-    $('#mediumCarsNb').text(mediumCarsNb.toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
-    $('#fullSizeCarsNb').text(fullSizeCarsNb.toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
-    $('#class1TrucksNb').text(class1TrucksNb.toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
-    $('#class2TrucksNb').text(class2TrucksNb.toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
+        const bayIndex = findAvailableBay(requestTime);
 
-});
+        if (bayIndex !== -1) {
+            bayStatus[bayIndex] = { endTime: endTime };
+            scheduledAppointments.push([...appointment, `Bay ${bayIndex + 1}`]);
+        } else {
+            if (!bayStatus.some(status => !status || status.endTime <= requestTime)) {
+                scheduledAppointments.push([...appointment, 'Turned Away']);
+            } else {
+                const nextAvailableBayIndex = findAvailableBay(requestTime);
+                if (nextAvailableBayIndex !== -1) {
+                    bayStatus[nextAvailableBayIndex] = { endTime: endTime };
+                    scheduledAppointments.push([...appointment, `Bay ${nextAvailableBayIndex + 1}`]);
+                } else {
+                    scheduledAppointments.push([...appointment, 'Turned Away']);
+                }
+            }
+        }
+    });
+
+    return scheduledAppointments;
+}
+
+function createTable(data) {
+    const table = document.createElement('table');
+    let row = table.insertRow();
+    ['Date of Submission', 'Appointment Date', 'Car Type', 'Allocated Bay'].forEach(headerText => {
+        let header = document.createElement('th');
+        header.textContent = headerText;
+        row.appendChild(header);
+    });
+
+    data.forEach((rowData, index) => {
+        if (index === 0) return;
+        let row = table.insertRow();
+        rowData.forEach(cellData => {
+            let cell = row.insertCell();
+            cell.textContent = cellData;
+        });
+    });
+
+    const container = document.getElementById('tableContainer');
+    container.innerHTML = '';
+    container.appendChild(table);
+}
+
+function loadCSV(event) {
+    const input = event.target;
+    if ('files' in input && input.files.length > 0) {
+        readFileContent(input.files[0])
+            .then(content => {
+                const data = parseCSV(content);
+                const scheduledData = scheduleAppointments(data);
+
+                $('#calendar').fullCalendar({
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay,listWeek'
+                    },
+                    validRange: {
+                        start: '2022-10-01',
+                        end: '2022-11-30'
+                    },
+                    events: scheduledData.map(event => ({
+                        title: event[2],
+                        start: new Date(event[1]),
+                        end: new Date(event[1]),
+                        vehiculeType: event[2],
+                        bayStatus: event[3]
+                    })),
+                    timeFormat: 'h:mm a',
+                    eventRender: function (event, element) {
+                        element.attr('title', event.description);
+                    }
+                });
+
+                createTable(scheduledData);
+            })
+            .catch(error => console.log(error));
+    }
+}
+
+document.getElementById('fileInput').addEventListener('change', loadCSV);
