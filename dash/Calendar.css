@@ -1,20 +1,19 @@
 
-/* Change background color of calendar header */
+/* Calendar header CSS */
 .fc-toolbar {
     padding-top: 20px;
-    background-color: #4e73df;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #000000;
 }
 
-/* Change background color of events */
+/* Calendar events CSS */
 .fc-event {
-    background-color: #e74c3c;
+    background-color: #3b61fc;
     color: #ffffff;
     border: none;
 }
 
-/* Add border to calendar cells */
+/* Caledar days CSS */
 .fc-day {
     border: 1px solid #ddd;
 }
-
