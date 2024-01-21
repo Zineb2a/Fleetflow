@@ -1,35 +1,47 @@
-// Set new default font family and font color to mimic Bootstrap's default styling
-Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-Chart.defaults.global.defaultFontColor = '#858796';
+// Set new data for the chart
+var totalRevenue = 90000;  // The total potential revenue
+var revenueEarned = 65000;  // The actual revenue earned
+var revenueLost = totalRevenue - revenueEarned;  // The revenue lost
 
-// Pie Chart Example
+// This will render the donut chart with earned and lost revenue
 var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
-  type: 'doughnut',
-  data: {
-    labels: ["Direct", "Referral", "Social"],
-    datasets: [{
-      data: [55, 30, 15],
-      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
-      hoverBorderColor: "rgba(234, 236, 244, 1)",
-    }],
-  },
-  options: {
-    maintainAspectRatio: false,
-    tooltips: {
-      backgroundColor: "rgb(255,255,255)",
-      bodyFontColor: "#858796",
-      borderColor: '#dddfeb',
-      borderWidth: 1,
-      xPadding: 15,
-      yPadding: 15,
-      displayColors: false,
-      caretPadding: 10,
+    type: 'doughnut',
+    data: {
+        labels: ["Revenue Earned", "Revenue Lost"],
+        datasets: [{
+            data: [revenueEarned, revenueLost],
+            backgroundColor: ['#4e73df', '#e74a3b'],
+            hoverBackgroundColor: ['#2e59d9', '#be2617'],
+            hoverBorderColor: "rgba(234, 236, 244, 1)",
+        }],
     },
-    legend: {
-      display: false
+    options: {
+        maintainAspectRatio: false,
+        tooltips: {
+            backgroundColor: "rgb(255,255,255)",
+            bodyFontColor: "#858796",
+            borderColor: '#dddfeb',
+            borderWidth: 1,
+            xPadding: 15,
+            yPadding: 15,
+            displayColors: false,
+            caretPadding: 10,
+            callbacks: {
+                label: function(tooltipItem, chart) {
+                    var dataset = chart.datasets[tooltipItem.datasetIndex];
+                    var total = dataset.data.reduce(function(previousValue, currentValue) {
+                        return previousValue + currentValue;
+                    });
+                    var currentValue = dataset.data[tooltipItem.index];
+                    var percentage = Math.floor(((currentValue/total) * 100)+0.5);         
+                    return percentage + "%";
+                }
+            }
+        },
+        legend: {
+            display: true
+        },
+        cutoutPercentage: 80,
     },
-    cutoutPercentage: 80,
-  },
 });

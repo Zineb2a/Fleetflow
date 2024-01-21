@@ -35,7 +35,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Fleet Flow</div>
+                <div class="sidebar-brand-text mx-3">FleetFlow</div>
             </a>
 
             <!-- Divider -->
@@ -49,9 +49,9 @@
             </li>
 
             <!-- Divider -->
-            
 
-            
+
+
             </li>
 
             <!-- Divider -->
@@ -62,7 +62,7 @@
                 Management
             </div>
 
-    
+
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
@@ -71,11 +71,17 @@
                     <span>Service Spot</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="schedule.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Schedule</span></a>
+            </li>
+
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Schedule</span></a>
+                    <span>Database</span></a>
             </li>
 
             <!-- Divider -->
@@ -86,7 +92,7 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-           
+
         </ul>
         <!-- End of Sidebar -->
 
@@ -104,7 +110,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                   
+
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -112,7 +118,7 @@
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            </a> 
+                            </a>
                         </li>
 
                         </li>
@@ -124,13 +130,12 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Mecanician</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                            
+
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
@@ -156,15 +161,56 @@
                     <!-- Content Row -->
                     <div class="row">
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <!-- Number of served cars per category -->
+                        <div class="col-xl-5 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                                Number of served cars per category</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div style="display: flex; align-items: center;">
+                                                    <div style="margin-right:80px;">
+                                                        Compact cars
+                                                    </div>
+                                                    10 <!--TO CHANGE-->
+                                                </div>
+                                            </div>
+
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div style="display: flex; align-items: center;">
+                                                    <div style="margin-right:80px;">
+                                                        Medium cars
+                                                    </div>
+                                                    10 <!--TO CHANGE-->
+                                                </div>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div style="display: flex; align-items: center;">
+                                                    <div style="margin-right:80px;">
+                                                        Full-size cars
+                                                    </div>
+                                                    10 <!--TO CHANGE-->
+                                                </div>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div style="display: flex; align-items: center;">
+                                                    <div style="margin-right:80px;">
+                                                        Class 1 Trucks
+                                                    </div>
+                                                    10 <!--TO CHANGE-->
+                                                </div>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div style="display: flex; align-items: center;">
+                                                    <div style="margin-right:80px;">
+                                                        Class 2 Trucks
+                                                    </div>
+                                                    10 <!--TO CHANGE-->
+                                                </div>
+                                            </div>
+
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -174,15 +220,54 @@
                             </div>
                         </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <!-- Revenue per car category-->
+                        <div class="col-xl-5 col-md-6 mb-4">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                Revenue per Car Category</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div style="display: flex; align-items: center;">
+                                                    <div style="margin-right:80px;">
+                                                        Compact cars
+                                                    </div>
+                                                    10 000$<!--TO CHANGE-->
+                                                </div>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div style="display: flex; align-items: center;">
+                                                    <div style="margin-right:80px;">
+                                                        Medium cars
+                                                    </div>
+                                                    20 000$<!--TO CHANGE-->
+                                                </div>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div style="display: flex; align-items: center;">
+                                                    <div style="margin-right:80px;">
+                                                        Full-size cars
+                                                    </div>
+                                                    22 000$ <!--TO CHANGE-->
+                                                </div>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div style="display: flex; align-items: center;">
+                                                    <div style="margin-right:80px;">
+                                                        Class 1 Trucks
+                                                    </div>
+                                                    1000$ <!--TO CHANGE-->
+                                                </div>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div style="display: flex; align-items: center;">
+                                                    <div style="margin-right:80px;">
+                                                        Class 2 Trucks
+                                                    </div>
+                                                    1500$ <!--TO CHANGE-->
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -192,24 +277,54 @@
                             </div>
                         </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <!-- Number of Turn-Away Cars per Category -->
+                        <div class="col-xl-5 col-md-6 mb-4">
                             <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Number
+                                                of Turn-Away Cars per category
                                             </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div style="display: flex; align-items: center;">
+                                                    <div style="margin-right:80px;">
+                                                        Compact cars
                                                     </div>
+                                                    10 <!--TO CHANGE-->
+                                                </div>
+                                            </div>
+
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div style="display: flex; align-items: center;">
+                                                    <div style="margin-right:80px;">
+                                                        Medium cars
+                                                    </div>
+                                                    10 <!--TO CHANGE-->
+                                                </div>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div style="display: flex; align-items: center;">
+                                                    <div style="margin-right:80px;">
+                                                        Full-size cars
+                                                    </div>
+                                                    10 <!--TO CHANGE-->
+                                                </div>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div style="display: flex; align-items: center;">
+                                                    <div style="margin-right:80px;">
+                                                        Class 1 Trucks
+                                                    </div>
+                                                    10 <!--TO CHANGE-->
+                                                </div>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div style="display: flex; align-items: center;">
+                                                    <div style="margin-right:80px;">
+                                                        Class 2 Trucks
+                                                    </div>
+                                                    10 <!--TO CHANGE-->
                                                 </div>
                                             </div>
                                         </div>
@@ -221,25 +336,63 @@
                             </div>
                         </div>
 
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <!-- Revenue Lost per Car Category -->
+                        <div class="col-xl-5 col-md-6 mb-4">
                             <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                Revenue Lost per Car Category</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div style="display: flex; align-items: center;">
+                                                    <div style="margin-right:80px;">
+                                                        Compact cars
+                                                    </div>
+                                                    10 000$<!--TO CHANGE-->
+                                                </div>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div style="display: flex; align-items: center;">
+                                                    <div style="margin-right:80px;">
+                                                        Medium cars
+                                                    </div>
+                                                    20 000$<!--TO CHANGE-->
+                                                </div>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div style="display: flex; align-items: center;">
+                                                    <div style="margin-right:80px;">
+                                                        Full-size cars
+                                                    </div>
+                                                    22 000$ <!--TO CHANGE-->
+                                                </div>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div style="display: flex; align-items: center;">
+                                                    <div style="margin-right:80px;">
+                                                        Class 1 Trucks
+                                                    </div>
+                                                    1000$ <!--TO CHANGE-->
+                                                </div>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div style="display: flex; align-items: center;">
+                                                    <div style="margin-right:80px;">
+                                                        Class 2 Trucks
+                                                    </div>
+                                                    1500$ <!--TO CHANGE-->
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <!-- Content Row -->
 
                     <div class="row">
@@ -304,14 +457,11 @@
                                     </div>
                                     <div class="mt-4 text-center small">
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
+
+                                            <span class="mr-2">
+
+                                                <span class="mr-2">
+
                                     </div>
                                 </div>
                             </div>
@@ -363,74 +513,6 @@
                                 </div>
                             </div>
 
-                            <!-- Color System -->
-                            <div class="row">
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-primary text-white shadow">
-                                        <div class="card-body">
-                                            Primary
-                                            <div class="text-white-50 small">#4e73df</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-success text-white shadow">
-                                        <div class="card-body">
-                                            Success
-                                            <div class="text-white-50 small">#1cc88a</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-info text-white shadow">
-                                        <div class="card-body">
-                                            Info
-                                            <div class="text-white-50 small">#36b9cc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-warning text-white shadow">
-                                        <div class="card-body">
-                                            Warning
-                                            <div class="text-white-50 small">#f6c23e</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-danger text-white shadow">
-                                        <div class="card-body">
-                                            Danger
-                                            <div class="text-white-50 small">#e74a3b</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-secondary text-white shadow">
-                                        <div class="card-body">
-                                            Secondary
-                                            <div class="text-white-50 small">#858796</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-light text-black shadow">
-                                        <div class="card-body">
-                                            Light
-                                            <div class="text-black-50 small">#f8f9fc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-dark text-white shadow">
-                                        <div class="card-body">
-                                            Dark
-                                            <div class="text-white-50 small">#5a5c69</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
 
                         <div class="col-lg-6 mb-4">
@@ -451,20 +533,6 @@
                                         completely free and without attribution!</p>
                                     <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
                                         unDraw &rarr;</a>
-                                </div>
-                            </div>
-
-                            <!-- Approach -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                                        CSS bloat and poor page performance. Custom CSS classes are used to create
-                                        custom components and custom utility classes.</p>
-                                    <p class="mb-0">Before working with this theme, you should become familiar with the
-                                        Bootstrap framework, especially the utility classes.</p>
                                 </div>
                             </div>
 
