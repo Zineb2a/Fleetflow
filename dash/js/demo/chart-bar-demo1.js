@@ -30,6 +30,12 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");
+let compactcars=10000;
+let mediumcars=1000;
+let fullsizecars=1550;
+let class1trucks=1300;
+let class2trucks=11000;
+
 var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
@@ -39,7 +45,7 @@ var myBarChart = new Chart(ctx, {
       backgroundColor: "#4e73df",
       hoverBackgroundColor: "#2e59d9",
       borderColor: "#4e73df",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
+      data: [compactcars, mediumcars, fullsizecars, class1trucks, class2trucks],
     }],
   },
   options: {
