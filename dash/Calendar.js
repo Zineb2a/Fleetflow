@@ -133,7 +133,9 @@ function loadCSV(event) {
                         start: '2022-10-01',
                         end: '2022-11-30'
                     },
-                    events: scheduledData.map(event => ({
+                    events:scheduledData
+                    .filter(event => event[3] !== 'Turned Away')
+                    .map(event => ({
                         title: `${event[2]}(${event[3]})`,
                         start: new Date(event[1]),
                         end: new Date(event[1]),
