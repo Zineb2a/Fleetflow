@@ -44,19 +44,19 @@
                                     <form class="user">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                id="mail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                                id="password" placeholder="Password">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
                                             </div>
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
+                                        <a onclick="onysubmit();return false" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </a>
                                         
@@ -90,6 +90,56 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
+
+
+    <script>
+
+
+
+function onysubmit() {
+            m = $("#mail").val()
+            p = $("#password").val()
+            var h = 0
+
+
+            $.ajax({
+                type: 'GET',
+                url: "http://localhost:8080/api/v1/user",
+            
+                success: function (data) {
+                    console.log(data)
+                    for (i in data) {
+                        if (data[i].email == m && data[i].password === p) {
+                            localStorage.setItem("login", "true")
+                            localStorage.setItem("mail", m)
+
+                            window.location.href = "index.html"
+                            h = 0
+                            break
+                        } else {
+                            h = 1
+                        }
+
+
+
+                    }
+                    if (h === 1) {
+                        alert("the entered email or password are wrong")
+                    }
+
+
+
+                }
+
+
+
+            })
+
+        }
+
+
+
+    </script>
 </body>
 
 </html>
