@@ -134,8 +134,7 @@ function updateIconBasedOnType(vehicleType) {
     if (iconId) {
         document.getElementById(iconId).style.color = "red"; 
         iconId=true;;
-        // Example: Change the color of the icon
-        // You can add more styling changes or swap the icon image here
+       
     }
 }
 
