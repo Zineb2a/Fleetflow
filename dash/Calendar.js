@@ -1,3 +1,4 @@
+// Function to read the CSV file
 function readFileContent(file) {
     const reader = new FileReader();
     return new Promise((resolve, reject) => {
@@ -7,12 +8,14 @@ function readFileContent(file) {
     });
 }
 
+// Function to parse CSV content
 function parseCSV(text) {
     const lines = text.split('\n').map(line => line.split(',').map(cell => cell.trim()));
     lines.sort((a, b) => new Date(a[1]) - new Date(b[1]));
     return lines;
 }
 
+// Function to allocate bays and schedule appointments
 function scheduleAppointments(data) {
     const serviceTime = {
         'compact': 30,
@@ -86,19 +89,21 @@ function scheduleAppointments(data) {
     return scheduledAppointments;
 }
 
+// Function to create a table and display the scheduled appointments
 function createTable(data) {
     const table = document.createElement('table');
     let row = table.insertRow();
-    ['Date of Submission', 'Appointment Date', 'Car Type', 'Allocated Bay'].forEach(headerText => {
+    ['Appointment Date', 'Car Type', 'Allocated Bay'].forEach(headerText => {
         let header = document.createElement('th');
         header.textContent = headerText;
         row.appendChild(header);
     });
 
     data.forEach((rowData, index) => {
-        if (index === 0) return;
+        if (index === 0 || rowData.length < 4 || rowData[3] === 'Turned Away') return; // Skip header row, malformed data, and 'Turned Away' rows
+
         let row = table.insertRow();
-        rowData.forEach(cellData => {
+        [rowData[1], rowData[2], rowData[3]].forEach(cellData => { // Display only columns 2, 3, and 4
             let cell = row.insertCell();
             cell.textContent = cellData;
         });
@@ -109,6 +114,7 @@ function createTable(data) {
     container.appendChild(table);
 }
 
+// Main function to load and process the CSV file
 function loadCSV(event) {
     const input = event.target;
     if ('files' in input && input.files.length > 0) {
@@ -128,7 +134,7 @@ function loadCSV(event) {
                         end: '2022-11-30'
                     },
                     events: scheduledData.map(event => ({
-                        title: event[2],
+                        title: `${event[2]}(${event[3]})`,
                         start: new Date(event[1]),
                         end: new Date(event[1]),
                         vehiculeType: event[2],
