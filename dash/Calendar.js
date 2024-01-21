@@ -1,4 +1,3 @@
-// Function to read the CSV file
 function readFileContent(file) {
     const reader = new FileReader();
     return new Promise((resolve, reject) => {
@@ -33,7 +32,7 @@ function scheduleAppointments(data) {
         'class 2 truck': 700
     };
 
-    const bayStatus = new Array(10).fill(null);
+    const bayStatus = new Array(5).fill(null); // Only 5 bays available
 
     function findAvailableBay(appointmentTime) {
         for (let i = 0; i < bayStatus.length; i++) {
