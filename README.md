@@ -10,7 +10,7 @@ FleetFlow is a scheduling software designed to optimize appointment processes fo
 <br/>
 
 # Technologies
-Frontend: CSS, HTML, Java
+Frontend: CSS, HTML, Java<br/>
 Backend: MySQL for database & Node.js
 <br/>
 
